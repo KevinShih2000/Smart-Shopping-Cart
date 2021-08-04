@@ -1,0 +1,13 @@
+{
+  "name": "rpi",
+  "version": "1.0.0",
+  "main": "camera.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon camera.js"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.12",
+    "socket.io-client": "^4.1.3"
+  }
+}
