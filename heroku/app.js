@@ -3,10 +3,10 @@ const app = express();
 const app_cam = express();
 const http = require('http');
 const cam_port = process.env.CAM_PORT || 5000;
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 4000;
 const httpServer = http.createServer(app);
 const cors = require('cors');
-var path = require("path");
+var path = require('path');
 //const mongoose = require('mongoose');
 //const apiRouter = require('./routes/api');
 const router = express.Router();
@@ -91,16 +91,11 @@ app.use(router);
 //app.set('socketio', socketio);
 //app.set('socket_cam', socket_cam);
 
-if (process.env.NODE_ENV === 'production') {
-    // Exprees will serve up production assets
-    app.use(express.static('client/build'));
-  
-    // Express serve up index.html file if it doesn't recognize route
-    const path = require('path');
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
-  }
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 httpServer.listen(port, () => {
     console.log("Server is listening on port", port);
