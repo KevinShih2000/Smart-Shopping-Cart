@@ -6,7 +6,7 @@ const cam_port = process.env.CAM_PORT || 5000;
 const port = process.env.PORT || 4000;
 const httpServer = http.createServer(app);
 const cors = require('cors');
-var path = require('path');
+var path = require("path");
 //const mongoose = require('mongoose');
 //const apiRouter = require('./routes/api');
 const router = express.Router();
@@ -90,12 +90,6 @@ app.use(router);
 //app.use('/api', apiRouter);
 //app.set('socketio', socketio);
 //app.set('socket_cam', socket_cam);
-
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
 
 httpServer.listen(port, () => {
     console.log("Server is listening on port", port);
