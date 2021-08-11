@@ -11,7 +11,7 @@ import axios from 'axios';
 
 function App() {
   const instance = axios.create({
-    baseURL: "/",
+    baseURL: "https://rpi-remote-camera.herokuapp.com/",
     timeout: 60000
   });
   const [ws, setWs] = useState(null);
