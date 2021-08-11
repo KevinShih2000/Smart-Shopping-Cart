@@ -1,12 +1,19 @@
 import React from 'react';
+import { useEffect, useState, useRef } from 'react';
+import {io} from 'socket.io-client'
 import './App.css';
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Table from './table';
 import Header from './header';
+import axios from 'axios';
 
 
 function App() {
+  const instance = axios.create({
+    baseURL: "http://localhost:4000/",
+    timeout: 60000
+  });
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
 
@@ -51,12 +58,12 @@ function App() {
   const f2 = async () => {
     const hello = await instance.post('/send', { withCredentials: true });
     console.log(hello);
-    socket.emit('take', () => {
+    ws.emit('take', () => {
       console.log('take request...');
     });
   }
   const f3 =  () => {
-    socket.disconnect();
+    ws.disconnect();
   }
   /*
       <Button variant = "outlined" color='primary' onClick = {() => f3()}>
@@ -81,7 +88,6 @@ function App() {
       <Button variant = "outlined" color='primary' onClick = {() => f3()}>
         Disconnect
       </Button>
-      <Header />
       <Grid container direction="row" justifyContent="flex-end" alignItems="center" spacing={3}>
         <Grid item xs={2}>
           <img id = "image" src = {image}/>
