@@ -11,7 +11,7 @@ import axios from 'axios';
 
 function App() {
   const instance = axios.create({
-    baseURL: "https://rpi-remote-camera.herokuapp.com/",
+    baseURL: "",
     timeout: 60000
   });
   const [ws, setWs] = useState(null);
@@ -21,7 +21,7 @@ function App() {
     if (ws) {
         return;
     }
-    const socket = io("https://rpi-remote-camera.herokuapp.com/");
+    const socket = io("/");
     socket.on('imageR', (image) => {
       console.log(image);
       setImage(image);
