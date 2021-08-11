@@ -4,13 +4,7 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Table from './table';
 import Header from './header';
-import axios from 'axios';
-import {io} from 'socket.io-client';
 
-const instance = axios.create({
-  baseURL: "http://localhost:4000",
-  timeout: 6000
-});
 
 function App() {
   const [ws, setWs] = useState(null);
@@ -96,7 +90,6 @@ function App() {
           <Table />
         </Grid>
       </Grid>
-      
     </>
   );
 }
