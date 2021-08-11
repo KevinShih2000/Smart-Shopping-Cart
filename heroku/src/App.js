@@ -26,6 +26,7 @@ function App() {
       console.log(image);
       setImage(image);
     });
+    setWs(socket);
     return () => {
       if (ws) {
           ws.disconnect();
