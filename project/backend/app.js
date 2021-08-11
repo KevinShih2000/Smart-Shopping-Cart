@@ -60,20 +60,24 @@ socketio.on('connection', (socket) => {
     socket.on('disconnect', (reason) => {
         console.log('Disconnect');
     })
-    socket.on("take", (mes, fn) => {
-        console.log("Picture request ", mes);
-        if(cameras){
-            console.log("Requesting Camera", id);
-            cameras[id].emit("takeP","picture", (picture) => {
-                console.log("Picture Received", picture);
-                fn(picture);
-            })
-        }
-    })
-    socket.on('camera',() => {
+    socket.on("camera", () => {
         console.log("Camera Online!");
         cameras[socket.id] = socket;
         id = socket.id;
+    })
+    socket.on("take", () => {
+        console.log("Picture request");
+        if(cameras){
+            cameras[id].emit("takeP", () => {
+                console.log("Requesting Camera", id);
+            })
+        }
+    })
+    socket.on("image", (image) => {
+        console.log("Image received");
+        socketio.sockets.emit("imageR", () => {
+            console.log("image: ", image);
+        })
     })
 })
 
