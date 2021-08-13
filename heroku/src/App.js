@@ -38,24 +38,7 @@ function App() {
     const hello = await instance.post('/home', { withCredentials: true });
     console.log(hello);
   }
-  const f1 = () => {
-    
-    //socket.disconnect();
-    
-    //const hello = await instance.post('/connect', { withCredentials: true });
-    /*
-    socket.on('connection', (newMessage) => {
-      console.log(newMessage);
-    });
-    
-    socket.on('msg', (newMessage) => {
-      console.log(newMessage);
-    });
-    socket.on('send', (newMessage) => {
-      console.log(newMessage);
-    });
-    */
-  }
+  
   const f2 = async () => {
     const hello = await instance.post('/send', { withCredentials: true });
     console.log(hello);
@@ -63,9 +46,7 @@ function App() {
       console.log('take request...');
     });
   }
-  const f3 =  () => {
-    ws.disconnect();
-  }
+
   /*
       <Button variant = "outlined" color='primary' onClick = {() => f3()}>
         Disconnect
@@ -80,14 +61,8 @@ function App() {
       <Button variant = "outlined" color='primary' onClick = {() => f()}>
         Hello
       </Button>
-      <Button variant = "outlined" color='primary' onClick = {() => f1()}>
-        Connect
-      </Button>
       <Button variant = "outlined" color='primary' onClick = {() => f2()}>
         Send
-      </Button>
-      <Button variant = "outlined" color='primary' onClick = {() => f3()}>
-        Disconnect
       </Button>
       <Grid container direction="row" justifyContent="flex-end" alignItems="center" spacing={3}>
         <Grid item xs={2}>

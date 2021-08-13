@@ -13,7 +13,7 @@ const router = express.Router();
 
 //require('dotenv').config();
 
-var sockets = {};
+var sockets = [];
 var cameras = {};
 var id;
 
@@ -78,9 +78,8 @@ socketio.on('connection', (socket) => {
     })
     socket.on("image", (image) => {
         console.log("Image received");
-        socketio.sockets.emit("imageR", () => {
-            console.log("image: ", image);
-        })
+        console.log("image: ", image);
+        socketio.emit("imageR", image);
     })
 })
 
