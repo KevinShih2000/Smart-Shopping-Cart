@@ -13,7 +13,7 @@ const router = express.Router();
 
 //require('dotenv').config();
 
-var sockets = {};
+var sockets = [];
 var cameras = {};
 var id;
 
@@ -59,6 +59,9 @@ socketio.on('connection', (socket) => {
     console.log("Client connected! ID: ", socket.id);
     socket.on('disconnect', (reason) => {
         console.log('Disconnect');
+        if(id === socket.id) {
+            id = null;
+        }
     })
     socket.on("camera", () => {
         console.log("Camera Online!");
@@ -67,7 +70,7 @@ socketio.on('connection', (socket) => {
     })
     socket.on("take", () => {
         console.log("Picture request");
-        if(cameras){
+        if(id){
             cameras[id].emit("takeP", () => {
                 console.log("Requesting Camera", id);
             })
@@ -75,9 +78,8 @@ socketio.on('connection', (socket) => {
     })
     socket.on("image", (image) => {
         console.log("Image received");
-        socketio.sockets.emit("imageR", () => {
-            console.log("image: ", image);
-        })
+        console.log("image: ", image);
+        socketio.emit("imageR", image);
     })
 })
 
@@ -90,6 +92,15 @@ app.use(router);
 //app.use('/api', apiRouter);
 //app.set('socketio', socketio);
 //app.set('socket_cam', socket_cam);
+
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'build')));
+// Handle React routing, return all requests to React app
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+}
 
 httpServer.listen(port, () => {
     console.log("Server is listening on port", port);
