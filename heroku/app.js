@@ -59,6 +59,9 @@ socketio.on('connection', (socket) => {
     console.log("Client connected! ID: ", socket.id);
     socket.on('disconnect', (reason) => {
         console.log('Disconnect');
+        if(id === socket.id) {
+            id = null;
+        }
     })
     socket.on("camera", () => {
         console.log("Camera Online!");
@@ -67,7 +70,7 @@ socketio.on('connection', (socket) => {
     })
     socket.on("take", () => {
         console.log("Picture request");
-        if(cameras){
+        if(id){
             cameras[id].emit("takeP", () => {
                 console.log("Requesting Camera", id);
             })
