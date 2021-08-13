@@ -65,10 +65,10 @@ function App() {
         Send
       </Button>
       <Grid container direction="row" justifyContent="flex-end" alignItems="center" spacing={3}>
-        <Grid item xs={2}>
+        <Grid item xs={5}>
           <img id = "image" src = {`data:image/jpg;base64,${image}`} />
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={7}>
           <Table />
         </Grid>
       </Grid>
