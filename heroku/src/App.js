@@ -38,7 +38,7 @@ function App() {
     const hello = await instance.post('/home', { withCredentials: true });
     console.log(hello);
   }
-  
+
   const f2 = async () => {
     const hello = await instance.post('/send', { withCredentials: true });
     console.log(hello);
@@ -66,7 +66,7 @@ function App() {
       </Button>
       <Grid container direction="row" justifyContent="flex-end" alignItems="center" spacing={3}>
         <Grid item xs={2}>
-          <img id = "image" src = {image}/>
+          <img id = "image" src = {`data:image/jpg;base64,${image}`} />
         </Grid>
         <Grid item xs={9}>
           <Table />
