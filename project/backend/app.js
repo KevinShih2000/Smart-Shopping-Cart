@@ -61,6 +61,7 @@ socketio.on('connection', (socket) => {
         console.log('Disconnect');
         if(id === socket.id) {
             id = null;
+            console.log('Camera disconnected');
         }
     })
     socket.on("camera", () => {
@@ -79,6 +80,7 @@ socketio.on('connection', (socket) => {
     socket.on("image", (image) => {
         console.log("Image received");
         console.log("image: ", image);
+        
         socketio.emit("imageR", image);
     })
 })
