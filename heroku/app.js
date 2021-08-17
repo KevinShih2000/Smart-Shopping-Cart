@@ -1,12 +1,20 @@
 const express = require('express');
 const app = express();
-const app_cam = express();
+//const app_cam = express();
 const http = require('http');
-const cam_port = process.env.CAM_PORT || 5000;
+//const cam_port = process.env.CAM_PORT || 5000;
 const port = process.env.PORT || 4000;
 const httpServer = http.createServer(app);
 const cors = require('cors');
-var path = require("path");
+const path = require("path");
+const fs = require('fs');
+
+require('@tensorflow/tfjs-backend-cpu');
+require('@tensorflow/tfjs-backend-webgl');
+const tf = require('@tensorflow/tfjs-node');
+const cocoSsd = require('@tensorflow-models/coco-ssd');
+const toUint8Array = require('base64-to-uint8array');
+
 //const mongoose = require('mongoose');
 //const apiRouter = require('./routes/api');
 const router = express.Router();
@@ -16,23 +24,12 @@ const router = express.Router();
 var sockets = [];
 var cameras = {};
 var id;
-
-/*
-const socket_cam = require('socket.io')(
-    app_cam.listen(cam_port, () => {
-        console.log("Camera server is listening on port", cam_port);
-    })
-);
-
-socket_cam.of('/camera').on("connection", (camera) => {
-    console.log("Camera connected! ID: ", camera.id);
-    camera.join(camera.id);
-    camera.on('disconnect', (reason) => {
-        console.log('leave room ' + camera.id)
-        camera.leave(camera.id);
-    })
-})
-*/
+var imgs = [
+    'images/apple.jfif',
+    'images/banana.jfif',
+    'images/scissor.jfif'
+]
+const contents = fs.readFileSync(imgs[0], {encoding: 'base64'});
 
 const socketio = require('socket.io')(httpServer, {
     cors: {
@@ -40,20 +37,6 @@ const socketio = require('socket.io')(httpServer, {
         credentials: true
     }
 });
-/*
-socketio.of('camera').on('connection', (camera) => {
-    console.log("Camera connected! ID: ", camera.id);
-    camera.on('disconnect', (reason) => {
-        console.log('Disconnect');
-    })
-    camera.on('camera',(data)=>{
-        console.log("Camera Online!");
-        cameras[camera.id] = camera;
-        id = camera.id;
-    })
-    
-})
-*/
 
 socketio.on('connection', (socket) => {
     console.log("Client connected! ID: ", socket.id);
@@ -61,6 +44,7 @@ socketio.on('connection', (socket) => {
         console.log('Disconnect');
         if(id === socket.id) {
             id = null;
+            console.log('Camera disconnected');
         }
     })
     socket.on("camera", () => {
@@ -75,10 +59,15 @@ socketio.on('connection', (socket) => {
                 console.log("Requesting Camera", id);
             })
         }
+        else{
+            const obj = obj_detect(contents);
+            socketio.emit("imageR", contents);
+        }
     })
     socket.on("image", (image) => {
         console.log("Image received");
         console.log("image: ", image);
+        //const obj = obj_detect(image);
         socketio.emit("imageR", image);
     })
 })
@@ -105,6 +94,17 @@ if (process.env.NODE_ENV === 'production') {
 httpServer.listen(port, () => {
     console.log("Server is listening on port", port);
 })
+
+// object detection
+const obj_detect = async (image) => {
+    const model = await cocoSsd.load();
+    const imageArray = toUint8Array(image);
+    const tensor3d = tf.node.decodeJpeg( imageArray, 3);
+    const predictions = await model.detect(tensor3d);
+    console.log(predictions);
+    return predictions;
+} 
+
 
 // router
 

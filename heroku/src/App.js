@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Table from './table';
 import Header from './header';
 import axios from 'axios';
+import { Height } from '@material-ui/icons';
 
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
     if (ws) {
         return;
     }
-    const socket = io("/");
+    //const socket = io("/");
+    const socket = io("http://localhost:4000");
     socket.on('imageR', (image) => {
       console.log(image);
       setImage(image);
@@ -66,7 +68,7 @@ function App() {
       </Button>
       <Grid container direction="row" justifyContent="flex-end" alignItems="center" spacing={3}>
         <Grid item xs={5}>
-          <img id = "image" src = {`data:image/jpg;base64,${image}`} />
+          <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 400, width: 550}} />
         </Grid>
         <Grid item xs={7}>
           <Table />
