@@ -29,7 +29,7 @@
     "nodemon": "^2.0.12"
   },
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "start_react": "react-scripts start",
     "build": "react-scripts build",
     "heroku-postbuild": "yarn run build",
