@@ -43,10 +43,6 @@ const rows = [
 ];
 
 
-function total_fun(items) {
-    return items.map(({ Price }) => Price).reduce((sum, i) => sum + i, 0);
-}
-const total = total_fun(rows);
 
 const useStyles = makeStyles({
   root: {
@@ -78,6 +74,12 @@ export default function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  
+  function total_fun(items) {
+    return items.map(({ Price }) => Price).reduce((sum, i) => sum + i, 0);
+  }
+  const total = total_fun(rows);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

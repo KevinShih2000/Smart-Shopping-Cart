@@ -60,15 +60,15 @@ socketio.on('connection', (socket) => {
             })
         }
         else{
-            const obj = obj_detect(contents);
-            socketio.emit("imageR", contents);
+            let obj = obj_detect(contents);
+            socketio.emit("imageR", contents, obj);
         }
     })
     socket.on("image", (image) => {
         console.log("Image received");
         console.log("image: ", image);
-        //const obj = obj_detect(image);
-        socketio.emit("imageR", image);
+        let obj = obj_detect(image);
+        socketio.emit("imageR", image, obj);
     })
 })
 
