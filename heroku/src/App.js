@@ -24,9 +24,11 @@ function App() {
     }
     const socket = io("/");
     //const socket = io("http://localhost:4000");
-    socket.on('imageR', (image, obj) => {
-      console.log(obj);
+    socket.on('imageR', (image) => {
+      console.log(image);
       setImage(image);
+    }, (object) => {
+      console.log(object);
     });
     setWs(socket);
     return () => {
