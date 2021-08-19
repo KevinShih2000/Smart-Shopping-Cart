@@ -31,6 +31,12 @@ var imgs = [
 ]
 const contents = fs.readFileSync(imgs[0], {encoding: 'base64'});
 
+let model;
+(async () => {
+    model = await cocoSsd.load();
+    console.log("Model ready...")
+})()
+
 const socketio = require('socket.io')(httpServer, {
     cors: {
         origin: '*',
@@ -52,7 +58,7 @@ socketio.on('connection', (socket) => {
         cameras[socket.id] = socket;
         id = socket.id;
     })
-    socket.on("take", () => {
+    socket.on("take", async () => {
         console.log("Picture request");
         if(id){
             cameras[id].emit("takeP", () => {
@@ -60,14 +66,16 @@ socketio.on('connection', (socket) => {
             })
         }
         else{
-            var obj = obj_detect(contents);
+            var obj = await obj_detect(contents);
+            console.log("obj", obj);
             socketio.emit("imageR", contents, obj);
         }
     })
     socket.on("image", (image) => {
         console.log("Image received");
         console.log("image: ", image);
-        var object = obj_detect(image);
+        var object = await obj_detect(image);
+        console.log(object);
         socketio.emit("imageR", image, object);
     })
 })
@@ -97,13 +105,12 @@ httpServer.listen(port, () => {
 
 // object detection
 const obj_detect = async (image) => {
-    const model = await cocoSsd.load();
     const imageArray = toUint8Array(image);
     const tensor3d = tf.node.decodeJpeg( imageArray, 3);
     const predictions = await model.detect(tensor3d);
-    console.log(predictions);
+    //console.log(predictions);
     return predictions;
-} 
+}
 
 
 // router

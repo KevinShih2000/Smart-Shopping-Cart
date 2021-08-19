@@ -17,6 +17,8 @@ function App() {
   });
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
+  const [object, setObject] = useState(null);
+  const [preobj, setPreobj] = useState(null);
 
   useEffect(() => {
     if (ws) {
@@ -24,11 +26,10 @@ function App() {
     }
     const socket = io("/");
     //const socket = io("http://localhost:4000");
-    socket.on('imageR', (image) => {
-      console.log(image);
-      setImage(image);
-    }, (object) => {
+    socket.on('imageR', (image, object) => {
       console.log(object);
+      setObject(object);
+      setImage(image);
     });
     setWs(socket);
     return () => {
@@ -68,12 +69,12 @@ function App() {
       <Button variant = "outlined" color='primary' onClick = {() => f2()}>
         Send
       </Button>
-      <Grid container direction="row" justifyContent="flex-end" alignItems="center" spacing={3}>
+      <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={3}>
         <Grid item xs={5}>
-          <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 400, width: 550}} />
+          <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 200, width: 280}} />
         </Grid>
-        <Grid item xs={7}>
-          <Table />
+        <Grid item xs={5}>
+          <Table obj = {object} />
         </Grid>
       </Grid>
     </>
