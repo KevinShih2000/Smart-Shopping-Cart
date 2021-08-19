@@ -32,9 +32,12 @@ var imgs = [
 const contents = fs.readFileSync(imgs[0], {encoding: 'base64'});
 
 let model;
+let ready = false;
+
 (async () => {
     model = await cocoSsd.load();
-    console.log("Model ready...")
+    ready = true;
+    console.log("Model ready...");
 })()
 
 const socketio = require('socket.io')(httpServer, {
@@ -71,7 +74,7 @@ socketio.on('connection', (socket) => {
             socketio.emit("imageR", contents, obj);
         }
     })
-    socket.on("image", (image) => {
+    socket.on("image", async (image) => {
         console.log("Image received");
         console.log("image: ", image);
         var object = await obj_detect(image);
@@ -105,6 +108,9 @@ httpServer.listen(port, () => {
 
 // object detection
 const obj_detect = async (image) => {
+    if(!ready){
+        return null;
+    }
     const imageArray = toUint8Array(image);
     const tensor3d = tf.node.decodeJpeg( imageArray, 3);
     const predictions = await model.detect(tensor3d);
