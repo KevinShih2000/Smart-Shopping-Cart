@@ -17,7 +17,7 @@ function App() {
   });
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
-  const [object, setObject] = useState(null);
+  const [obj, setObj] = useState(null);
   const [preobj, setPreobj] = useState(null);
 
   useEffect(() => {
@@ -28,7 +28,8 @@ function App() {
     //const socket = io("http://localhost:4000");
     socket.on('imageR', (image, object) => {
       console.log(object);
-      setObject(object);
+      setPreobj(obj);
+      setObj(object);
       setImage(image);
     });
     setWs(socket);
@@ -74,7 +75,7 @@ function App() {
           <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 200, width: 280}} />
         </Grid>
         <Grid item xs={5}>
-          <Table obj = {object} />
+          <Table obj = {obj} preobj = {preobj} />
         </Grid>
       </Grid>
     </>
