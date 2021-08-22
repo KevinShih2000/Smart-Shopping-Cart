@@ -70,7 +70,7 @@ const StyledTableCell2 = withStyles((theme) => ({
     },
 }))(TableCell);
 
-export default function StickyHeadTable({obj, preobj}) {
+export default function StickyHeadTable({obj}) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
