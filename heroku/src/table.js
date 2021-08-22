@@ -32,15 +32,21 @@ function createData(name, Price, Calories) {
   return { name, Price, Calories };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 100, 159),
-  createData('Ice cream sandwich', 30, 237),
-  createData('Apple', 40, 208),
-  createData('Umbrella', 390, 'X'),
-  createData('Cupcake', 70, 305),
-  createData('Gingerbread', 75, 356),
-  createData('Banna', 30, 180),
-];
+var item_price = {
+  'cup' : 80,
+  'bowl' : 105,
+  'apple' : 30,
+  'scissors' : 49
+};
+
+var item_calor = {
+  'cup' : 'X',
+  'bowl' : 'X',
+  'apple' : '136',
+  'scissors' : 'X'
+};
+
+const rows = [];
 
 
 
@@ -75,6 +81,9 @@ export default function StickyHeadTable({obj}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+  for (var i=0; i<obj.length; i++){
+    rows[i] = createData(obj[i].class, item_price[obj[i].class], item_calor[obj[i].class])
+  }
   
   function total_fun(items) {
     return items.map(({ Price }) => Price).reduce((sum, i) => sum + i, 0);
