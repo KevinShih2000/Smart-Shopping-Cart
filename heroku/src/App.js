@@ -73,7 +73,7 @@ function App() {
         <Grid item xs={5}>
           <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 200, width: 280}} />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={10}>
           <Table obj = {object} />
         </Grid>
       </Grid>
