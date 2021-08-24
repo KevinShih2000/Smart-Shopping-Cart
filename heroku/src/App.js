@@ -17,8 +17,8 @@ function App() {
   });
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
-  const [object, setObject] = useState(null);
-  const [preobj, setPreobj] = useState(null);
+  const [object, setObject] = useState([]);
+  const [preobj, setPreobj] = useState([]);
 
   useEffect(() => {
     if (ws) {
@@ -73,7 +73,7 @@ function App() {
         <Grid item xs={5}>
           <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 200, width: 280}} />
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={6}>
           <Table obj = {object} />
         </Grid>
       </Grid>
