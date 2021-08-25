@@ -35,7 +35,7 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography variant="h6" >
             Shopping Cart
           </Typography>
         </Toolbar>

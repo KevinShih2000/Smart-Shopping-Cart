@@ -11,18 +11,22 @@ import TableRow from '@material-ui/core/TableRow';
 
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
+  { id: 'name',
+    label: 'Name',
+    minWidth: 50,
+    align: 'center',
+  },
   {
     id: 'Price',
     label: 'Price',
-    minWidth: 170,
+    minWidth: 50,
     align: 'center',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'Calories',
     label: 'Calories',
-    minWidth: 170,
+    minWidth: 50,
     align: 'center',
     format: (value) => value.toLocaleString('en-US'),
   },
