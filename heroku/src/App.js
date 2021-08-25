@@ -72,11 +72,11 @@ function App() {
       <Button variant = "outlined" color='primary' onClick = {() => f2()}>
         Send
       </Button>
-      <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={3}>
-        <Grid item xs={5}>
-          <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 200, width: 280}} />
+      <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={2}>
+        <Grid item xs={12}>
+          <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 180, width: 250}} />
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={12}>
           <Table obj = {object} />
         </Grid>
       </Grid>
