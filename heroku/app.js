@@ -23,6 +23,11 @@ const router = express.Router();
 
 var sockets = [];
 var cameras = {};
+var objs = [];
+var preobjs = [];
+var state;
+var add = [];
+var remove = [];
 var id;
 var imgs = [
     'images/apple.jfif',
@@ -53,6 +58,8 @@ socketio.on('connection', (socket) => {
         console.log('Disconnect');
         if(id === socket.id) {
             id = null;
+            objs = [];
+            preobjs = [];
             console.log('Camera disconnected');
         }
     })
@@ -69,7 +76,7 @@ socketio.on('connection', (socket) => {
             })
         }
         else{
-            var obj = await obj_detect(contents);
+            obj = await obj_detect(contents);
             console.log("obj", obj);
             socketio.emit("imageR", contents, obj);
         }
@@ -77,9 +84,21 @@ socketio.on('connection', (socket) => {
     socket.on("image", async (image) => {
         console.log("Image received");
         console.log("image: ", image);
-        var object = await obj_detect(image);
-        console.log(object);
-        socketio.emit("imageR", image, object);
+        preobjs = objs;
+        objs = await obj_detect(image);
+        console.log(objs);
+        if (objs.length() !== preobjs.length()) {
+            if (objs.length() > preobjs.length()) {
+                state = 1;
+            }
+            else {
+                state = 2;
+            }
+            cameras[id].emit("object", state);
+        }
+        add = objs.filter(x => !preobjs.includes(x));
+        remove = preobjs.filter(x => !objs.includes(x));
+        socketio.emit("imageR", image, objs, add, remove);
     })
 })
 
