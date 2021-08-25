@@ -30,6 +30,7 @@ var add = [];
 var remove = [];
 var id;
 var imgs = [
+    'images/no_item.jfif',
     'images/apple.jfif',
     'images/banana.jfif',
     'images/scissor.jfif'

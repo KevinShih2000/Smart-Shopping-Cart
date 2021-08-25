@@ -8,7 +8,7 @@ import Table from './table';
 import Header from './header';
 import axios from 'axios';
 import { Height } from '@material-ui/icons';
-
+import no_item from './no_item.jfif';
 
 function App() {
   const instance = axios.create({
@@ -55,26 +55,20 @@ function App() {
     });
   }
 
-  /*
-      <Button variant = "outlined" color='primary' onClick = {() => f3()}>
-        Disconnect
-      </Button>
-      <Button variant = "outlined" color='primary' onClick = {() => f1()}>
-        Connect
-      </Button>
-      */
   return (
     <>
       <Header />
-      <Button variant = "outlined" color='primary' onClick = {() => f()}>
+      {/*<Button variant = "outlined" color='primary' onClick = {() => f()}>
         Hello
       </Button>
+      */}
       <Button variant = "outlined" color='primary' onClick = {() => f2()}>
         Send
       </Button>
       <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={1}>
         <Grid item xs={12}>
-          <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 180, width: 250}} />
+          {image ? <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 180, width: 250}} />
+           : <img id = "image" src = {no_item} style = {{height: 180, width: 250}} />}
         </Grid>
         <Grid item xs={12}>
           <Table obj = {object} />
