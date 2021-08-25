@@ -87,8 +87,8 @@ socketio.on('connection', (socket) => {
         preobjs = objs;
         objs = await obj_detect(image);
         console.log(objs);
-        if (objs.length() !== preobjs.length()) {
-            if (objs.length() > preobjs.length()) {
+        if (objs.length !== preobjs.length) {
+            if (objs.length > preobjs.length) {
                 state = 1;
             }
             else {

@@ -18,7 +18,8 @@ function App() {
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
   const [object, setObject] = useState([]);
-  const [preobj, setPreobj] = useState([]);
+  const [add, setadd] = useState([]);
+  const [remove, setremove] = useState([]);
 
   useEffect(() => {
     if (ws) {
@@ -26,10 +27,12 @@ function App() {
     }
     const socket = io("/");
     //const socket = io("http://localhost:4000");
-    socket.on('imageR', (image, object) => {
-      console.log(object);
-      setObject(object);
+    socket.on('imageR', (image, objs, add, remove) => {
+      console.log(objs);
+      setObject(objs);
       setImage(image);
+      setadd(add);
+      setremove(remove);
     });
     setWs(socket);
     return () => {
