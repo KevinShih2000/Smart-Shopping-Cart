@@ -88,18 +88,21 @@ socketio.on('connection', (socket) => {
         preobjs = objs;
         objs = await obj_detect(image);
         console.log(objs);
-        if (objs.length !== preobjs.length) {
-            if (objs.length > preobjs.length) {
-                state = 1;
+        if (objs.findIndex(obj => obj.class === "person") == -1) {
+            if (objs.length !== preobjs.length) {
+                if (objs.length > preobjs.length) {
+                    state = 1;
+                }
+                else {
+                    state = 2;
+                }
+                cameras[id].emit("object", state);
             }
-            else {
-                state = 2;
-            }
-            cameras[id].emit("object", state);
+            add = objs.filter(x => !preobjs.includes(x));
+            remove = preobjs.filter(x => !objs.includes(x));
+            socketio.emit("imageR", image, objs, add, remove);
         }
-        add = objs.filter(x => !preobjs.includes(x));
-        remove = preobjs.filter(x => !objs.includes(x));
-        socketio.emit("imageR", image, objs, add, remove);
+        
     })
 })
 
