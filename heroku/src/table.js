@@ -11,22 +11,18 @@ import TableRow from '@material-ui/core/TableRow';
 
 
 const columns = [
-  { id: 'name',
-    label: 'Name',
-    minWidth: 50,
-    align: 'center',
-  },
+  { id: 'name', label: 'Name', minWidth: 170 },
   {
     id: 'Price',
     label: 'Price',
-    minWidth: 50,
+    minWidth: 170,
     align: 'center',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'Calories',
     label: 'Calories',
-    minWidth: 50,
+    minWidth: 170,
     align: 'center',
     format: (value) => value.toLocaleString('en-US'),
   },
@@ -36,19 +32,27 @@ function createData(name, Price, Calories) {
   return { name, Price, Calories };
 }
 
+var item = ['cup','bowl','apple','scissors','banana'];
+
 var item_price = {
   'cup' : 80,
   'bowl' : 105,
   'apple' : 30,
-  'scissors' : 49
+  'scissors' : 49,
+  'banana' : 50
 };
 
 var item_calor = {
   'cup' : 'X',
   'bowl' : 'X',
   'apple' : '136',
-  'scissors' : 'X'
+  'scissors' : 'X',
+  'banana' : '150'
 };
+
+
+
+
 
 
 const useStyles = makeStyles({
@@ -81,16 +85,21 @@ export default function StickyHeadTable({obj}) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  var total = 0;
   var rows = [];
 
   for (var i=0; i<obj.length; i++){
-    rows[i] = createData(obj[i].class, item_price[obj[i].class], item_calor[obj[i].class])
+    if (item.includes(obj[i].class)){
+      rows[i] = createData(obj[i].class, item_price[obj[i].class], item_calor[obj[i].class])
+    }
+  
   }
   
   function total_fun(items) {
     return items.map(({ Price }) => Price).reduce((sum, i) => sum + i, 0);
   }
-  const total = total_fun(rows);
+
+  total = total_fun(rows);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
