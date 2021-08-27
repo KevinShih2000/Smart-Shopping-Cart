@@ -18,8 +18,8 @@ function App() {
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
   const [object, setObject] = useState([]);
-  const [add, setadd] = useState([]);
-  const [remove, setremove] = useState([]);
+  const [add, setadd] = useState(null);
+  const [remove, setremove] = useState(null);
 
   useEffect(() => {
     if (ws) {
@@ -60,11 +60,14 @@ function App() {
       <Header />
       {/*<Button variant = "outlined" color='primary' onClick = {() => f()}>
         Hello
-      </Button>
-      */}
+      </Button> 
       <Button variant = "outlined" color='primary' onClick = {() => f2()}>
         Send
       </Button>
+      */}
+      <Typography variant="h6" >
+          {}
+      </Typography>
       <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={1}>
         <Grid item xs={12}>
           {image ? <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 180, width: 250}} />
