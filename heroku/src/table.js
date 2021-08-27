@@ -50,9 +50,6 @@ var item_calor = {
   'scissors' : 'X'
 };
 
-const rows = [];
-
-
 
 const useStyles = makeStyles({
   root: {
@@ -84,6 +81,7 @@ export default function StickyHeadTable({obj}) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  var rows = [];
 
   for (var i=0; i<obj.length; i++){
     rows[i] = createData(obj[i].class, item_price[obj[i].class], item_calor[obj[i].class])
