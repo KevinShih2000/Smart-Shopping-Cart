@@ -65,9 +65,7 @@ function App() {
         Send
       </Button>
       */}
-      <Typography variant="h6" >
-          {}
-      </Typography>
+      
       <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={1}>
         <Grid item xs={12}>
           {image ? <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 180, width: 250}} />
