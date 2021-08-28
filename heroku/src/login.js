@@ -55,10 +55,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
-
-export default function SignIn() {
+export default function SignIn({setState, setUsername}) {
   const classes = useStyles();
 
   return (
@@ -80,11 +77,12 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="user"
+            label="Username"
+            name="username"
+            autoComplete='username'
             autoFocus
+            onChange={ (event) => setUsername(event.target.value) }
           />
           <TextField
             variant="outlined"
@@ -107,7 +105,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            href="https://rpi-remote-camera.herokuapp.com/"
+            onClick = {() => setState(1)}
           >
             Sign in
           </Button>
@@ -134,3 +132,4 @@ export default function SignIn() {
   );
 }
 
+export default SignIn;

@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar({username}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -192,7 +192,7 @@ export default function PrimarySearchAppBar() {
             </IconButton>
           </div>
           <Typography className={classes.title} variant="h6" noWrap>
-              Cindy
+              {username}
           </Typography>
           <div className={classes.sectionMobile}>
             <IconButton
