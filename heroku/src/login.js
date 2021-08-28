@@ -1,4 +1,5 @@
-import login_img from './login_img.png';
+import logo from './login_img.png';
+import welcome from './welcome.gif';
 import './App.css';
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
@@ -10,17 +11,18 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-
+import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 function Copyright() {
   return (
+    
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit">
-        Google HPS
+        HPS Smart Shopping 
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -33,7 +35,6 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(3),
     marginLeft: theme.spacing(3),
     display: 'flex',
     flexDirection: 'column',
@@ -50,30 +51,29 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-  image: {
-    backgroundImage: '../2021-08-27 22.12.41',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
+ 
 }));
+
+
+
+
 
 export default function SignIn() {
   const classes = useStyles();
 
   return (
-    
-    <Grid container component="main" maxWidth="xs" alignItems="flex-start">
+  
+    <Grid container component="main" direction="column" maxWidth="xs" alignItems="flex-start" >
       <CssBaseline />
-      <div className={classes.paper}>
-      <Grid  >
-        <img  width="250" height="200"/>
-      </Grid>
+      <img src={welcome} width='700'/>
+      <div className={classes.paper} >
         <Avatar className={classes.avatar}>
+        <LockIcon/>
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        
         <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
@@ -124,7 +124,9 @@ export default function SignIn() {
             </Grid>
           </Grid>
         </form>
-        <Box mt={8}>
+        <img src={logo} width='80'/>
+        
+        <Box mt={1}>
         <Copyright />
       </Box>
       </div>
