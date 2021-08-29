@@ -1,5 +1,5 @@
 import logo from './login_img.png';
-import './App.css';
+import './login.css';
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -128,4 +128,3 @@ export default function SignIn({setState, setUsername}) {
     </Grid>
   );
 }
-
