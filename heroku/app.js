@@ -136,7 +136,7 @@ const obj_detect = async (image) => {
     }
     const imageArray = toUint8Array(image);
     const tensor3d = tf.node.decodeJpeg( imageArray, 3);
-    const predictions = await model.detect(tensor3d, 20, 0.35);
+    const predictions = await model.detect(tensor3d, 20, 0.2);
     //console.log(predictions);
     return predictions;
 }

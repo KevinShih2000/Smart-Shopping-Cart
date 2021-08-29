@@ -1,4 +1,4 @@
-import './App.css';
+import './checkout.css';
 import logo from './login_img.png';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -23,7 +23,7 @@ function Copyright() {
 var price ='199'
 var username = 'Cindy'
 
-export default function checkout({price},{username}) {
+export default function Checkout({price, username}) {
   return (
     <Grid container component="main" direction="column" maxWidth="xs=12" alignItems="flex-start" >
     <header className="App-header" >

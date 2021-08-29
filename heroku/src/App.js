@@ -10,7 +10,7 @@ import axios from 'axios';
 import { Height } from '@material-ui/icons';
 import no_item from './no_item.jfif';
 import SignIn from './login';
-//import Checkout from './checkout';
+import Checkout from './checkout';
 
 function App() {
   const instance = axios.create({
@@ -24,6 +24,7 @@ function App() {
   const [remove, setremove] = useState(null);
   const [state, setState] = useState(0);
   const [username, setUsername] = useState(0);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     if (ws) {
@@ -80,14 +81,14 @@ function App() {
             : <img id = "image" src = {no_item} style = {{height: 180, width: 250}} />}
           </Grid>
           <Grid item xs={12}>
-            <Table obj = {object} />
+            <Table obj = {object} setTotal = {setTotal} />
           </Grid>
         </Grid>
       </>
     );
   }
   else {
-    //return( <Checkout /> );
+    return( <Checkout total = {total} username = {username} /> );
   }
   
 }

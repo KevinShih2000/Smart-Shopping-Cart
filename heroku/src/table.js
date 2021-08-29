@@ -56,9 +56,6 @@ var item_calor = {
 
 
 
-
-
-
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -85,11 +82,10 @@ const StyledTableCell2 = withStyles((theme) => ({
     },
 }))(TableCell);
 
-export default function StickyHeadTable({obj}) {
+export default function StickyHeadTable({obj, total, setTotal}) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  var total = 0;
   var rows = [];
 
   for (var i=0; i<obj.length; i++){
@@ -104,6 +100,7 @@ export default function StickyHeadTable({obj}) {
   }
 
   total = total_fun(rows);
+  setTotal(total);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
