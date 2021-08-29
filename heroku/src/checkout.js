@@ -39,7 +39,7 @@ export default function Checkout({total, username}) {
       <div className='App-text4'>
         Please come again.
       </div>
-      <img src={logo} style = {{width: '100%'}} />
+      <img src={logo} width='80' />
       <Box mt={1}>
         <Copyright />
       </Box>
@@ -48,5 +48,3 @@ export default function Checkout({total, username}) {
     
   );
 }
-
-
