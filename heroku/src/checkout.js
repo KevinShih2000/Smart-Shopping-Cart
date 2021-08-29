@@ -23,7 +23,7 @@ function Copyright() {
 var price ='199'
 var username = 'Cindy'
 
-export default function checkout() {
+export default function checkout({price},{username}) {
   return (
     <Grid container component="main" direction="column" maxWidth="xs=12" alignItems="flex-start" >
     <header className="App-header" >
