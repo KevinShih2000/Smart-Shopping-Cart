@@ -1,5 +1,4 @@
 import logo from './login_img.png';
-import welcome from './welcome.gif';
 import './App.css';
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
@@ -14,7 +13,6 @@ import Box from '@material-ui/core/Box';
 import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 
 function Copyright() {
   return (
@@ -31,11 +29,10 @@ function Copyright() {
 }
 
 
-
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginLeft: theme.spacing(3),
+    marginTop: theme.spacing(27),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -50,19 +47,20 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-  },
+  }
  
 }));
 
 
-export default function SignIn({setState, setUsername}) {
+
+export default function SignIn() {
   const classes = useStyles();
 
   return (
   
-    <Grid container component="main" direction="column" maxWidth="xs" alignItems="flex-start" >
+    <Grid container component="main" direction="column" maxWidth="200" alignItems="flex-start" >
       <CssBaseline />
-      <img src={welcome} width='700'/>
+      <header className="welcome" >
       <div className={classes.paper} >
         <Avatar className={classes.avatar}>
         <LockIcon/>
@@ -70,19 +68,17 @@ export default function SignIn({setState, setUsername}) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        
         <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="user"
+            id="email"
             label="Username"
-            name="username"
-            autoComplete='username'
+            name="email"
+            autoComplete="email"
             autoFocus
-            onChange={ (event) => setUsername(event.target.value) }
           />
           <TextField
             variant="outlined"
@@ -105,7 +101,7 @@ export default function SignIn({setState, setUsername}) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick = {() => setState(1)}
+            href="https://rpi-remote-camera.herokuapp.com/"
           >
             Sign in
           </Button>
@@ -123,11 +119,12 @@ export default function SignIn({setState, setUsername}) {
           </Grid>
         </form>
         <img src={logo} width='80'/>
-        
         <Box mt={1}>
         <Copyright />
       </Box>
       </div>
+      </header>
     </Grid>
   );
 }
+
