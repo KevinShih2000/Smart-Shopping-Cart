@@ -25,7 +25,7 @@ function Copyright() {
 
 export default function Checkout({total, username}) {
   return (
-    <Grid container component="main" direction="column" maxWidth="xs=12" alignItems="flex-start" >
+    <Grid container component="main" direction="column" style = {{width: '100%'}} alignItems="flex-start" >
     <header className="App-header" >
       <div className='App-text'>
         {total}
@@ -39,7 +39,7 @@ export default function Checkout({total, username}) {
       <div className='App-text4'>
         Please come again.
       </div>
-      <img src={logo} width='80'/>
+      <img src={logo} style = {{width: '100%'}} />
       <Box mt={1}>
         <Copyright />
       </Box>

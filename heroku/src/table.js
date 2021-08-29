@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -168,9 +169,11 @@ export default function StickyHeadTable({obj, total, setTotal, setState}) {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-      <Button variant = "outlined" color='primary' onClick = {() => setState(2)}>
-        Checkout
-      </Button>
+      <Box display="flex" justifyContent="center" style={{ width: '100%' }} bgcolor="background.paper">
+        <Button variant = "contained"  color='primary' onClick = {() => setState(2)} style = {{marginBottom: 10}} >
+          Checkout
+        </Button>
+      </Box>
     </Paper>
   );
 }

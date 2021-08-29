@@ -98,8 +98,8 @@ socketio.on('connection', (socket) => {
                 }
                 cameras[id].emit("object", state);
             }
-            add = objs.filter(x => !preobjs.includes(x));
-            remove = preobjs.filter(x => !objs.includes(x));
+            add = objs.filter(x => !preobjs.filter(y => x.class === y.class));
+            remove = preobjs.filter(x => !objs.filter(y => x.class === y.class));
             socketio.emit("imageR", image, objs, add, remove);
         }
         
