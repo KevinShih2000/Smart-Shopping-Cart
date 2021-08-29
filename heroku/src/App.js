@@ -32,20 +32,20 @@ function App() {
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
   const [object, setObject] = useState([]);
-  const [add, setadd] = useState([
+  const [add, setadd] = useState([/*
     {
       class: '123',
     },{
       class: 'apple',
     }
-  ]);
-  const [remove, setremove] = useState([
+  */]);
+  const [remove, setremove] = useState([/*
     {
       class: '456',
     },{
       class: 'pineapple',
     }
-  ]);
+  */]);
   const [state, setState] = useState(0);
   const [username, setUsername] = useState(0);
   const [total, setTotal] = useState(0);
