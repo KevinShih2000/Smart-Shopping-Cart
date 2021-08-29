@@ -20,15 +20,15 @@ function Copyright() {
   );
 }
 
-var price ='199'
-var username = 'Cindy'
+//var price ='199'
+//var username = 'Cindy'
 
-export default function Checkout({price, username}) {
+export default function Checkout({total, username}) {
   return (
     <Grid container component="main" direction="column" maxWidth="xs=12" alignItems="flex-start" >
     <header className="App-header" >
       <div className='App-text'>
-        {price}
+        {total}
       </div>
       <div className='App-text2'>
         Dear {username},

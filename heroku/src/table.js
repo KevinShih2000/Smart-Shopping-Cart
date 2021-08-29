@@ -167,6 +167,9 @@ export default function StickyHeadTable({obj, total, setTotal}) {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      <Button variant = "outlined" color='primary' onClick = {() => setState(2)}>
+        Checkout
+      </Button>
     </Paper>
   );
 }

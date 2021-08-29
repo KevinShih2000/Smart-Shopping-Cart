@@ -3,11 +3,13 @@ import { useEffect, useState, useRef } from 'react';
 import {io} from 'socket.io-client'
 import './App.css';
 import { Button } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Table from './table';
 import Header from './header';
 import axios from 'axios';
 import { Height } from '@material-ui/icons';
+import Typography from '@material-ui/core/Typography';
 import no_item from './no_item.jfif';
 import SignIn from './login';
 import Checkout from './checkout';
@@ -20,8 +22,8 @@ function App() {
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
   const [object, setObject] = useState([]);
-  const [add, setadd] = useState(null);
-  const [remove, setremove] = useState(null);
+  const [add, setadd] = useState([]);
+  const [remove, setremove] = useState([]);
   const [state, setState] = useState(0);
   const [username, setUsername] = useState(0);
   const [total, setTotal] = useState(0);
@@ -76,6 +78,20 @@ function App() {
         */}
         
         <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={1} style = {{marginTop: 10}}>
+          <Box display="flex" justifyContent="center" style={{ width: '100%' }} bgcolor="background.paper">
+            {add.map((x) => (
+              <Typography variant="h6" color = "primary" style = {{marginRight: 20}}>
+                  {x.class}
+              </Typography>
+              )
+            )}
+            {remove.map((x) => (
+              <Typography variant="h6" color = "secondary" style = {{marginLeft: 20}}>
+                  {x.class}
+              </Typography>
+              )
+            )}
+          </Box>
           <Grid item xs={12}>
             {image ? <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 180, width: 250}} />
             : <img id = "image" src = {no_item} style = {{height: 180, width: 250}} />}

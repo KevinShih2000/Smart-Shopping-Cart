@@ -84,7 +84,7 @@ socketio.on('connection', (socket) => {
     })
     socket.on("image", async (image) => {
         console.log("Image received");
-        console.log("image: ", image);
+        //console.log("image: ", image);
         preobjs = objs;
         objs = await obj_detect(image);
         console.log(objs);
