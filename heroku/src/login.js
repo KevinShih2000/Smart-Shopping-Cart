@@ -131,5 +131,3 @@ export default function SignIn({setState, setUsername}) {
     </Grid>
   );
 }
-
-export default SignIn;

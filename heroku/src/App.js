@@ -10,7 +10,7 @@ import axios from 'axios';
 import { Height } from '@material-ui/icons';
 import no_item from './no_item.jfif';
 import SignIn from './login';
-import Checkout from './checkout';
+//import Checkout from './checkout';
 
 function App() {
   const instance = axios.create({
@@ -74,7 +74,7 @@ function App() {
         </Button>
         */}
         
-        <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={1}>
+        <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={1} style = {{marginTop: 10}}>
           <Grid item xs={12}>
             {image ? <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 180, width: 250}} />
             : <img id = "image" src = {no_item} style = {{height: 180, width: 250}} />}
@@ -87,7 +87,7 @@ function App() {
     );
   }
   else {
-    return( <Checkout /> );
+    //return( <Checkout /> );
   }
   
 }
