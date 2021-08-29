@@ -97,7 +97,7 @@ function App() {
             : <img id = "image" src = {no_item} style = {{height: 180, width: 250}} />}
           </Grid>
           <Grid item xs={12}>
-            <Table obj = {object} setTotal = {setTotal} />
+            <Table obj = {object} total = {total} setTotal = {setTotal} setState = {setState} />
           </Grid>
         </Grid>
       </>
