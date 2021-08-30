@@ -71,7 +71,7 @@ function App() {
       setImage(image);
       var objclass = objs.map(x => x.class);
       var pre = [...preobjs];
-      //console.log(pre);
+      console.log("pre", pre);
       var addi = [];
       for (var i = 0; i < objclass.length; i++) {
         var idx = pre.findIndex(x => x === objclass[i]);
@@ -88,7 +88,9 @@ function App() {
       console.log(pre);
       setadd(addi);
       setremove(pre);
+      console.log("c", objclass);
       setPreobjs(objclass);
+      console.log("po", preobjs);
     });
     setWs(socket);
     return () => {
