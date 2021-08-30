@@ -40,7 +40,25 @@ function App() {
   const [username, setUsername] = useState(0);
   const [total, setTotal] = useState(0);
   const classes = useStyles();
-
+/*
+  var objclass = ["cup", "bowl"];
+  var pre = ["apple", "cup"];
+  var addi = [];
+  for (var i = 0; i < objclass.length; i++) {
+    var idx = pre.findIndex(x => x === objclass[i]);
+    console.log("idx", idx);
+    if (idx !== -1) {
+        pre.splice(idx, 1);
+    }
+    else if (item.includes(objclass[i])) {
+        addi.push(objclass[i]);
+        console.log("addi");
+    }
+  };
+  var removei = pre.filter(x => (item.includes(x)));
+  console.log(addi);
+  console.log(removei);
+*/
   useEffect(() => {
     if (ws) {
         return;
@@ -53,20 +71,21 @@ function App() {
       setImage(image);
       var objclass = objs.map(x => x.class);
       var pre = preobjs;
-      addi = objclass.filter(x => {
-        var idx = pre.findIndex(x);
-        if (idx != -1) {
+      var addi = [];
+      for (var i = 0; i < objclass.length; i++) {
+        var idx = pre.findIndex(x => x === objclass[i]);
+        //console.log("idx", idx);
+        if (idx !== -1) {
             pre.splice(idx, 1);
-            return false;
         }
-        else if (item.includes(x)) {
-            return true;
+        else if (item.includes(objclass[i])) {
+            addi.push(objclass[i]);
+            //console.log("addi");
         }
-        else {
-            return false;
-        }
-      });
-      removei = pre.filter(x => (item.includes(x)));
+      };
+      var removei = pre.filter(x => (item.includes(x)));
+      console.log(addi);
+      console.log(removei);
       setadd(addi);
       setremove(removei);
       setPreobj(objclass);
