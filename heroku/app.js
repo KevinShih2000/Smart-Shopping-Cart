@@ -24,11 +24,13 @@ const router = express.Router();
 var sockets = [];
 var cameras = {};
 var objs = [];
+var objclass = [];
 var preobjs = [];
 var state;
 var add = [];
 var remove = [];
 var id;
+var idx;
 var imgs = [
     'images/no_item.jfif',
     'images/apple.jfif',
@@ -36,6 +38,8 @@ var imgs = [
     'images/scissor.jfif'
 ]
 const contents = fs.readFileSync(imgs[0], {encoding: 'base64'});
+
+var item = ['cup','bowl','apple','scissors','banana'];
 
 let model;
 let ready = false;
@@ -85,7 +89,7 @@ socketio.on('connection', (socket) => {
     socket.on("image", async (image) => {
         console.log("Image received");
         //console.log("image: ", image);
-        preobjs = objs;
+        preobjs = objclass;
         objs = await obj_detect(image);
         console.log(objs);
         if (objs.findIndex(obj => obj.class === "person") == -1) {
@@ -98,8 +102,21 @@ socketio.on('connection', (socket) => {
                 }
                 cameras[id].emit("object", state);
             }
-            add = objs.filter(x => !preobjs.filter(y => x.class === y.class));
-            remove = preobjs.filter(x => !objs.filter(y => x.class === y.class));
+            objclass = objs.map(x => x.class);
+            add = objclass.filter(x => {
+                idx = preobjs.findIndex(x);
+                if (idx != -1) {
+                    preobjs.splice(idx, 1);
+                    return false;
+                }
+                else if (item.includes(x)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
+            remove = preobjs.filter(x => (item.includes(x)));
             socketio.emit("imageR", image, objs, add, remove);
         }
         
