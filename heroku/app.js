@@ -35,7 +35,7 @@ var imgs = [
     'images/banana.jfif',
     'images/scissor.jfif'
 ]
-const contents = fs.readFileSync(imgs[1], {encoding: 'base64'});
+const contents = fs.readFileSync(imgs[0], {encoding: 'base64'});
 
 //var item = ['cup','bowl','apple','scissors','banana'];
 
@@ -101,9 +101,6 @@ socketio.on('connection', (socket) => {
                 cameras[id].emit("object", state);
             }
             socketio.emit("imageR", image, objs);
-        }
-        else {
-            objs = preobjs;
         }
         
     })
