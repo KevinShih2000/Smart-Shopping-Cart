@@ -29,11 +29,11 @@ function App() {
     baseURL: "",
     timeout: 60000
   });
-  const item = ['cup','bowl','apple','scissors','banana'];
+  //const item = ['cup','bowl','apple','scissors','banana'];
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
   const [object, setObject] = useState([]);
-  const [preobjs, setPreobjs] = useState([]);
+  //const [preobjs, setPreobjs] = useState([]);
   const [add, setadd] = useState([/*"banana"*/]);
   const [remove, setremove] = useState([/*"apple"*/]);
   const [state, setState] = useState(0);
@@ -66,12 +66,12 @@ function App() {
     const socket = io("/");
     //const socket = io("http://localhost:4000");
     socket.on('imageR', (image, objs) => {
-      console.log(objs);
+      var pre = [...object].map(x => x.class);
+      console.log(pre);
       setObject(objs);
       setImage(image);
       var objclass = objs.map(x => x.class);
-      var pre = [...preobjs];
-      console.log("pre", pre);
+      //console.log("pre", pre);
       var addi = [];
       for (var i = 0; i < objclass.length; i++) {
         var idx = pre.findIndex(x => x === objclass[i]);
@@ -88,9 +88,9 @@ function App() {
       console.log(pre);
       setadd(addi);
       setremove(pre);
-      console.log("c", objclass);
-      setPreobjs(objclass);
-      console.log("po", preobjs);
+      //console.log("c", objclass);
+      //setPreobjs(objclass);
+      //console.log("po", preobjs);
     });
     setWs(socket);
     return () => {
@@ -98,7 +98,7 @@ function App() {
           ws.disconnect();
       }
     }
-  }, [ws, preobjs]);
+  }, [ws, object]);
 
   const f = async () => {
     const hello = await instance.post('/home', { withCredentials: true });
