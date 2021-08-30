@@ -33,7 +33,7 @@ function App() {
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
   const [object, setObject] = useState([]);
-  const [preobjs, setPreobj] = useState([]);
+  const [preobjs, setPreobjs] = useState([]);
   const [add, setadd] = useState([/*"banana"*/]);
   const [remove, setremove] = useState([/*"apple"*/]);
   const [state, setState] = useState(0);
@@ -71,6 +71,7 @@ function App() {
       setImage(image);
       var objclass = objs.map(x => x.class);
       var pre = preobjs;
+      console.log(pre);
       var addi = [];
       for (var i = 0; i < objclass.length; i++) {
         var idx = pre.findIndex(x => x === objclass[i]);
@@ -84,11 +85,19 @@ function App() {
         }
       };
       var removei = pre.filter(x => (item.includes(x)));
+      var r = [];
+      for (var i = 0; i < pre.length; i++) {
+        if (item.includes(pre[i])){
+          r.push(pre[i])
+        }
+      }
+      console.log("re",removei);
+      console.log("r",r);
       console.log(addi);
       console.log(removei);
       setadd(addi);
       setremove(removei);
-      setPreobj(objclass);
+      setPreobjs(objclass);
     });
     setWs(socket);
     return () => {
