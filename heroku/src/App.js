@@ -32,20 +32,8 @@ function App() {
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
   const [object, setObject] = useState([]);
-  const [add, setadd] = useState([/*
-    {
-      class: '123',
-    },{
-      class: 'apple',
-    }
-  */]);
-  const [remove, setremove] = useState([/*
-    {
-      class: '456',
-    },{
-      class: 'pineapple',
-    }
-  */]);
+  const [add, setadd] = useState(["banana"]);
+  const [remove, setremove] = useState(["apple"]);
   const [state, setState] = useState(0);
   const [username, setUsername] = useState(0);
   const [total, setTotal] = useState(0);
@@ -118,7 +106,7 @@ function App() {
             >
               {add.map((x) => (
                 <ListItem button>
-                    {x.class}
+                    {x}
                 </ListItem>
                 )
               )}
@@ -136,7 +124,7 @@ function App() {
             >
               {remove.map((x) => (
                 <ListItem button>
-                  {x.class}
+                  {x}
                 </ListItem>
                 )
               )}
