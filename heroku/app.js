@@ -37,7 +37,7 @@ var imgs = [
 ]
 const contents = fs.readFileSync(imgs[0], {encoding: 'base64'});
 
-//var item = ['cup','bowl','apple','scissors','banana'];
+var item = ['cup','bowl','apple','scissors','banana'];
 
 let model;
 let ready = false;
@@ -91,6 +91,7 @@ socketio.on('connection', (socket) => {
         objs = await obj_detect(image);
         console.log(objs);
         if (objs.findIndex(obj => obj.class === "person") == -1) {
+            objs = objs.filter(x => item.includes(x.class))
             if (objs.length !== preobjs.length) {
                 if (objs.length > preobjs.length) {
                     state = 1;

@@ -79,24 +79,15 @@ function App() {
         if (idx !== -1) {
             pre.splice(idx, 1);
         }
-        else if (item.includes(objclass[i])) {
+        else {
             addi.push(objclass[i]);
             //console.log("addi");
         }
-      };
-      var removei = pre.filter(x => (item.includes(x)));
-      var r = [];
-      for (var i = 0; i < pre.length; i++) {
-        if (item.includes(pre[i])){
-          r.push(pre[i])
-        }
       }
-      console.log("re",removei);
-      console.log("r",r);
       console.log(addi);
-      console.log(removei);
+      console.log(pre);
       setadd(addi);
-      setremove(removei);
+      setremove(pre);
       setPreobjs(objclass);
     });
     setWs(socket);
