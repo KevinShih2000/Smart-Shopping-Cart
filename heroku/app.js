@@ -102,6 +102,9 @@ socketio.on('connection', (socket) => {
             }
             socketio.emit("imageR", image, objs);
         }
+        else {
+            objs = preobjs;
+        }
         
     })
 })

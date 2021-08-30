@@ -70,7 +70,7 @@ function App() {
       setObject(objs);
       setImage(image);
       var objclass = objs.map(x => x.class);
-      var pre = preobjs;
+      var pre = [...preobjs];
       console.log(pre);
       var addi = [];
       for (var i = 0; i < objclass.length; i++) {
