@@ -89,7 +89,6 @@ socketio.on('connection', (socket) => {
     socket.on("image", async (image) => {
         console.log("Image received");
         //console.log("image: ", image);
-        preobjs = objclass;
         objs = await obj_detect(image);
         console.log(objs);
         if (objs.findIndex(obj => obj.class === "person") == -1) {
@@ -117,6 +116,7 @@ socketio.on('connection', (socket) => {
                 }
             });
             remove = preobjs.filter(x => (item.includes(x)));
+            preobjs = objs.map(x => x.class);
             socketio.emit("imageR", image, objs, add, remove);
         }
         
