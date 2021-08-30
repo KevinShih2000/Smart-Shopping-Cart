@@ -71,7 +71,7 @@ function App() {
       setImage(image);
       var objclass = objs.map(x => x.class);
       var pre = [...preobjs];
-      console.log(pre);
+      //console.log(pre);
       var addi = [];
       for (var i = 0; i < objclass.length; i++) {
         var idx = pre.findIndex(x => x === objclass[i]);
@@ -86,9 +86,9 @@ function App() {
       }
       console.log(addi);
       console.log(pre);
-      setPreobjs(objclass);
       setadd(addi);
       setremove(pre);
+      setPreobjs(objclass);
     });
     setWs(socket);
     return () => {
@@ -96,7 +96,7 @@ function App() {
           ws.disconnect();
       }
     }
-  }, [ws]);
+  }, [ws, preobjs]);
 
   const f = async () => {
     const hello = await instance.post('/home', { withCredentials: true });
