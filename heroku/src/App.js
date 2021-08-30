@@ -86,9 +86,9 @@ function App() {
       }
       console.log(addi);
       console.log(pre);
+      setPreobjs(objclass);
       setadd(addi);
       setremove(pre);
-      setPreobjs(objclass);
     });
     setWs(socket);
     return () => {

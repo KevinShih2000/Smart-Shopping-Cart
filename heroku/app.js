@@ -91,7 +91,7 @@ socketio.on('connection', (socket) => {
         objs = await obj_detect(image);
         console.log(objs);
         if (objs.findIndex(obj => obj.class === "person") == -1) {
-            objs = objs.filter(x => item.includes(x.class))
+            objs = objs.filter(x => item.includes(x.class));
             if (objs.length !== preobjs.length) {
                 if (objs.length > preobjs.length) {
                     state = 1;
