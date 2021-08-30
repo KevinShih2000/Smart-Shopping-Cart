@@ -127,11 +127,11 @@ function App() {
         */}
         
         <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={1} style = {{marginTop: 10}}>
-          <Grid item xs={7}>
+          <Grid item xs={8}>
             {image ? <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 180, width: 250}} />
-            : <img id = "image" src = {no_item} style = {{height: 180, width: 250}} />}
+            : <img id = "image" src = {no_item} style = {{height: 180, width: 240}} />}
           </Grid>
-          <Grid xs={5}>
+          <Grid xs={4}>
           { add.length === 0 ? <></> : 
             <List
               className={ classes.list }
