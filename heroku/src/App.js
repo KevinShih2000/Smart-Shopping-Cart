@@ -29,11 +29,13 @@ function App() {
     baseURL: "",
     timeout: 60000
   });
+  const item = ['cup','bowl','apple','scissors','banana'];
   const [ws, setWs] = useState(null);
   const [image, setImage] = useState(null);
   const [object, setObject] = useState([]);
-  const [add, setadd] = useState(["banana"]);
-  const [remove, setremove] = useState(["apple"]);
+  const [preobjs, setPreobj] = useState([]);
+  const [add, setadd] = useState([/*"banana"*/]);
+  const [remove, setremove] = useState([/*"apple"*/]);
   const [state, setState] = useState(0);
   const [username, setUsername] = useState(0);
   const [total, setTotal] = useState(0);
@@ -45,12 +47,29 @@ function App() {
     }
     const socket = io("/");
     //const socket = io("http://localhost:4000");
-    socket.on('imageR', (image, objs, add, remove) => {
+    socket.on('imageR', (image, objs) => {
       console.log(objs);
       setObject(objs);
       setImage(image);
-      setadd(add);
-      setremove(remove);
+      var objclass = objs.map(x => x.class);
+      var pre = preobjs;
+      addi = objclass.filter(x => {
+        var idx = pre.findIndex(x);
+        if (idx != -1) {
+            pre.splice(idx, 1);
+            return false;
+        }
+        else if (item.includes(x)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+      });
+      removei = pre.filter(x => (item.includes(x)));
+      setadd(addi);
+      setremove(removei);
+      setPreobj(objclass);
     });
     setWs(socket);
     return () => {
