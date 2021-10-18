@@ -36,7 +36,7 @@ function App() {
   //const [preobjs, setPreobjs] = useState([]);
   const [add, setadd] = useState([/*"banana"*/]);
   const [remove, setremove] = useState([/*"apple"*/]);
-  const [state, setState] = useState(0);
+  const [state, setState] = useState(1);
   const [username, setUsername] = useState(0);
   const [total, setTotal] = useState(0);
   const classes = useStyles();
