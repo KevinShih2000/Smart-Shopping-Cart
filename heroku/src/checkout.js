@@ -12,7 +12,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit">
-        HPS Smart Shopping 
+        Smart Shopping 
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -30,15 +30,7 @@ export default function Checkout({total, username}) {
       <div className='App-text'>
         {total}
       </div>
-      <div className='App-text2'>
-        Dear {username},
-      </div>
-      <div className='App-text3'>
-        Thank you.
-      </div>
-      <div className='App-text4'>
-        Please come again.
-      </div>
+      
       <img src={logo} width='80' />
       <Box mt={1}>
         <Copyright />
