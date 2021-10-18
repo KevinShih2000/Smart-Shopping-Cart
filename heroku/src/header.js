@@ -60,7 +60,7 @@ export default function PrimarySearchAppBar({username}) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
+        <IconButton aria-label="show 4 new mails" color="#07B53B">
           <Badge badgeContent={4} color="secondary">
             <MailIcon />
           </Badge>
@@ -68,7 +68,7 @@ export default function PrimarySearchAppBar({username}) {
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
+        <IconButton aria-label="show 11 new notifications" color="#07B53B">
           <Badge badgeContent={11} color="secondary">
             <NotificationsIcon />
           </Badge>
@@ -80,7 +80,7 @@ export default function PrimarySearchAppBar({username}) {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
+          color="#07B53B"
         >
           <AccountCircle />
         </IconButton>
@@ -96,7 +96,7 @@ export default function PrimarySearchAppBar({username}) {
           <IconButton
             edge="start"
             className={classes.menuButton}
-            color="inherit"
+            color="#07B53B"
             aria-label="open drawer"
           >
             <MenuIcon />
@@ -106,7 +106,7 @@ export default function PrimarySearchAppBar({username}) {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
+            <IconButton aria-label="show 17 new notifications" color="#07B53B">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
               </Badge>
@@ -117,13 +117,13 @@ export default function PrimarySearchAppBar({username}) {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
+              color="#07B53B"
             >
               <AccountCircle />
             </IconButton>
           </div>
           <Typography className={classes.title} variant="h6" noWrap>
-              {username}
+              Cindy
           </Typography>
          
         </Toolbar>
