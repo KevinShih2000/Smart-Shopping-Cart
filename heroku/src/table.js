@@ -170,8 +170,8 @@ export default function StickyHeadTable({obj, total, setTotal, setState}) {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
       <Box display="flex" justifyContent="center" style={{ width: '100%' }} bgcolor="background.paper">
-        <Button variant = "contained"  color='primary' onClick = {() => setState(2)} style = {{marginBottom: 10, marginTop: 10}} >
-          Checkout
+        <Button variant = "contained" onClick = {() => setState(2)} style = {{marginBottom: 10, marginTop: 10}} class="checkoutbutton">
+          CHECKOUT
         </Button>
       </Box>
     </Paper>
