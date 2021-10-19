@@ -30,6 +30,19 @@
  }
 
 
+ .checkoutbutton {
+  background-color: #07B53B; 
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2), 0 2px 8px 0 rgba(0,0,0,0.19);
+ }
+
 .App-link {
   color: #61dafb;
 }
