@@ -91,7 +91,7 @@ export default function PrimarySearchAppBar({username}) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static" class="header">
         <Toolbar>
           <IconButton
             edge="start"
