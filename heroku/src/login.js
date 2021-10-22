@@ -1,4 +1,3 @@
-import logo from './login_img.png';
 import './login.css';
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
@@ -120,7 +119,7 @@ export default function SignIn({setState, setUsername}) {
             </Grid>
           </Grid>
         </form>
-        <img src={logo} width='80'/>
+      
         <Box mt={1}>
         <Copyright />
       </Box>
