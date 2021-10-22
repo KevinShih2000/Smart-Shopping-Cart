@@ -1,5 +1,4 @@
 import './checkout.css';
-import logo from './login_img.png';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -31,8 +30,8 @@ export default function Checkout({total, username}) {
         {total}
       </div>
       
-      <img src={logo} width='80' />
-      <Box mt={1}>
+  
+      <Box mt={30}>
         <Copyright />
       </Box>
     </header>
