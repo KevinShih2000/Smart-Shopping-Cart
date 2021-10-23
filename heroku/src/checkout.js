@@ -31,7 +31,7 @@ export default function Checkout({total, username}) {
       </div>
       
   
-      <Box mt={50}>
+      <Box mt={45}>
         <Copyright />
       </Box>
     </header>
