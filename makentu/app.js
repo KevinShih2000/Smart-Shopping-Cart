@@ -1,4 +1,4 @@
-import mongo from './mongo.js';
+//import mongo from './mongo.js';
 import express from 'express';
 const app = express();
 //const app_cam = express();
@@ -82,6 +82,7 @@ socketio.on('connection', (socket) => {
         cameras[socket.id] = socket;
         id = socket.id;
     })
+    /*
     socket.on("take", async () => {
         console.log("Picture request");
         if(id){
@@ -119,6 +120,7 @@ socketio.on('connection', (socket) => {
         }
         
     })
+    */
     socket.on("result", async (msg) => {
         msg = JSON.parse(msg);
         console.log("msg received", msg);
