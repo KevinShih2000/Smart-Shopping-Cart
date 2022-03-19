@@ -1,14 +1,14 @@
-import mongo from './mongo';
-const express = require('express');
+import mongo from './mongo.js';
+import express from 'express';
 const app = express();
 //const app_cam = express();
-const http = require('http');
+import http from 'http';
 //const cam_port = process.env.CAM_PORT || 5000;
 const port = process.env.PORT || 4000;
 const httpServer = http.createServer(app);
-const cors = require('cors');
-const path = require("path");
-const fs = require('fs');
+import cors from 'cors';
+import path from "path";
+import fs from 'fs';
 
 /*
 require('@tensorflow/tfjs-backend-cpu');
@@ -18,26 +18,32 @@ const cocoSsd = require('@tensorflow-models/coco-ssd');
 const toUint8Array = require('base64-to-uint8array');
 */
 
-const apiRouter = require('./routes/api');
+//import apiRouter from './routes/api';
 const router = express.Router();
 
-require('dotenv-defaults').config();
+import dotenv from 'dotenv-defaults';
+dotenv.config();
 
 var sockets = [];
 var cameras = {};
 var objs = [];
 var preobjs = [];
 var state;
-var add = [];
-var remove = [];
 var id;
+
+var text = fs.readFileSync("./label.txt").toString();
+var labels = text.split("\n");
+
+/*
 var imgs = [
     'images/no_item.jfif',
     'images/apple.jfif',
     'images/banana.jfif',
     'images/scissor.jfif'
 ]
-const contents = fs.readFileSync(imgs[0], {encoding: 'base64'});
+*/
+
+//const contents = fs.readFileSync(imgs[0], {encoding: 'base64'});
 
 var item = ['cup','bowl','apple','scissors','banana'];
 
@@ -52,7 +58,8 @@ let ready = false;
 })()
 */
 
-const socketio = require('socket.io')(httpServer, {
+import { Server } from 'socket.io';
+const socketio = new Server(httpServer, {
     cors: {
         origin: '*',
         credentials: true
@@ -113,7 +120,12 @@ socketio.on('connection', (socket) => {
         
     })
     socket.on("result", async (msg) => {
+        msg = JSON.parse(msg);
         console.log("msg received", msg);
+        console.log(msg.length);
+        for(let i=0; i<msg.length; i++){
+            console.log(labels[msg[i]])
+        }
         socketio.emit("resmsg", "resmsg");
     })
 })

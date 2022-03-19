@@ -14,8 +14,9 @@ import Header from './header';
 import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 import no_item from './no_item.jfif';
-import SignIn from './login';
-import Checkout from './checkout';
+
+import SignIn from './components/login';
+import Checkout from './components/checkout';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -129,10 +130,6 @@ function App() {
         */}
         
         <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={1} style = {{marginTop: 10}}>
-          <Grid item xs={8}>
-            {image ? <img id = "image" src = {`data:image/jpg;base64,${image}`} style = {{height: 180, width: 250}} />
-            : <img id = "image" src = {no_item} style = {{height: 180, width: 240}} />}
-          </Grid>
           <Grid xs={4}>
           { add.length === 0 ? <></> : 
             <List
