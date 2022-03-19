@@ -1,3 +1,4 @@
+import mongo from './mongo';
 const express = require('express');
 const app = express();
 //const app_cam = express();
@@ -17,11 +18,10 @@ const cocoSsd = require('@tensorflow-models/coco-ssd');
 const toUint8Array = require('base64-to-uint8array');
 */
 
-const mongoose = require('mongoose');
 const apiRouter = require('./routes/api');
 const router = express.Router();
 
-require('dotenv').config();
+require('dotenv-defaults').config();
 
 var sockets = [];
 var cameras = {};
