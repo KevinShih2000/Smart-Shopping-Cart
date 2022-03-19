@@ -13,7 +13,6 @@ import Table from './components/table';
 import Header from './components/header';
 import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
-import no_item from './no_item.jfif';
 
 import SignIn from './components/login';
 import Checkout from './components/checkout';
@@ -32,12 +31,11 @@ function App() {
   });
   //const item = ['cup','bowl','apple','scissors','banana'];
   const [ws, setWs] = useState(null);
-  const [image, setImage] = useState(null);
   const [object, setObject] = useState([]);
   //const [preobjs, setPreobjs] = useState([]);
   const [add, setadd] = useState([/*"banana"*/]);
   const [remove, setremove] = useState([/*"apple"*/]);
-  const [state, setState] = useState(1);
+  const [state, setState] = useState(0);
   const [username, setUsername] = useState(0);
   const [total, setTotal] = useState(0);
   const classes = useStyles();
@@ -70,7 +68,6 @@ function App() {
       var pre = [...object].map(x => x.class);
       console.log(pre);
       setObject(objs);
-      setImage(image);
       var objclass = objs.map(x => x.class);
       //console.log("pre", pre);
       var addi = [];
