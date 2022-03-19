@@ -40,6 +40,31 @@ var id;
 var text = fs.readFileSync("./label.txt").toString();
 var labels = text.split("\n");
 
+var labels = new Array(91).fill(0);
+var price = new Array(91).fill(0);
+var cat = new Array(91).fill(0);
+var res_items;
+var res_price;
+var res_cat;
+
+var text1 = fs.readFileSync("./label.txt").toString();
+var rlabels = text1.split("\n");
+for(let j=0; j<rlabels.length; j++){
+  labels[rlabels[j].split(" ")[0]] = rlabels[j].split(" ")[1];
+}
+ 
+var text2 = fs.readFileSync("./price.txt").toString();
+var rprice = text2.split("\n");
+for(let j=0; j<rprice.length; j++){
+  price[rprice[j].split(" ")[0]] = rprice[j].split(" ")[1];
+}
+
+var text3 = fs.readFileSync("./cat.txt").toString();
+var rcat = text3.split("\n");
+for(let j=0; j<rcat.length; j++){
+  cat[rcat[j].split(" ")[0]] = rcat[j].split(" ")[1];
+}
+
 /*
 var imgs = [
     'images/no_item.jfif',
@@ -54,7 +79,7 @@ var imgs = [
 //var item = ['cup','bowl','apple','scissors','banana'];
 
 //let model;
-let ready = false;
+//let ready = false;
 
 /*
 (async () => {
@@ -127,14 +152,19 @@ socketio.on('connection', (socket) => {
         
     })
     */
-    socket.on("result", async (msg) => {
-        msg = JSON.parse(msg);
+    socket.on("result", async (msgstr) => {
+        let msg = JSON.parse(msgstr);
         console.log("msg received", msg);
         console.log(msg.length);
+        res_items = new Array(msg.length).fill(0);
+        res_price = new Array(msg.length).fill(0);
+        res_cat = new Array(msg.length).fill(0)
         for(let i=0; i<msg.length; i++){
-            console.log(labels[msg[i]])
+            res_items[i] = labels[msg[i]];
+            res_price[i] = parseInt(price[msg[i]], 10);
+            res_cat[i] = cat[msg[i]].trim();
         }
-        socketio.emit("resmsg", "resmsg");
+        socketio.emit("items", JSON.stringify(res_items), JSON.stringify(res_price), JSON.stringify(res_cat));
     })
 })
 

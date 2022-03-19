@@ -31,14 +31,12 @@ function App() {
   });
   //const item = ['cup','bowl','apple','scissors','banana'];
   const [ws, setWs] = useState(null);
-  const [object, setObject] = useState([]);
-  //const [preobjs, setPreobjs] = useState([]);
-  const [add, setadd] = useState([/*"banana"*/]);
-  const [remove, setremove] = useState([/*"apple"*/]);
+  const [labels, setLabels] = useState([]);
+  const [price, setPrice] = useState([]);
+  const [cat, setCat] = useState([]);
   const [state, setState] = useState(0);
   const [username, setUsername] = useState(0);
   const [total, setTotal] = useState(0);
-  const classes = useStyles();
 /*
   var objclass = ["cup", "bowl"];
   var pre = ["apple", "cup"];
@@ -64,31 +62,14 @@ function App() {
     }
     const socket = io("/");
     //const socket = io("http://localhost:4000");
-    socket.on('imageR', (image, objs) => {
-      var pre = [...object].map(x => x.class);
-      console.log(pre);
-      setObject(objs);
-      var objclass = objs.map(x => x.class);
-      //console.log("pre", pre);
-      var addi = [];
-      for (var i = 0; i < objclass.length; i++) {
-        var idx = pre.findIndex(x => x === objclass[i]);
-        //console.log("idx", idx);
-        if (idx !== -1) {
-            pre.splice(idx, 1);
-        }
-        else {
-            addi.push(objclass[i]);
-            //console.log("addi");
-        }
-      }
-      console.log(addi);
-      console.log(pre);
-      setadd(addi);
-      setremove(pre);
-      //console.log("c", objclass);
-      //setPreobjs(objclass);
-      //console.log("po", preobjs);
+    socket.on('items', (msgstr1, msgstr2, msgstr3) => {
+      let msg1 = JSON.parse(msgstr1);
+      let msg2 = JSON.parse(msgstr2);
+      let msg3 = JSON.parse(msgstr3);
+      console.log(msg1, msg2, msg3);
+      setLabels(msg1);
+      setPrice(msg2);
+      setCat(msg3);
     });
     setWs(socket);
     return () => {
@@ -96,7 +77,7 @@ function App() {
           ws.disconnect();
       }
     }
-  }, [ws, object]);
+  }, [ws, labels, price, cat, setLabels, setPrice, setCat]);
 
   const f = async () => {
     const hello = await instance.post('/home', { withCredentials: true });
@@ -128,7 +109,7 @@ function App() {
         
         <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={1} style = {{marginTop: 10}}>
           <Grid item xs={12}>
-            <Table obj = {object} total = {total} setTotal = {setTotal} setState = {setState} />
+            <Table labels = {labels} price = {price} cat = {cat} total = {total} setTotal = {setTotal} setState = {setState} />
           </Grid>
         </Grid>
       </>

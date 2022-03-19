@@ -11,7 +11,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
-
 const columns = [
   { id: 'name',
     label: 'Name',
@@ -26,16 +25,15 @@ const columns = [
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'Calories',
-    label: 'Calories',
+    id: 'Catagory',
+    label: 'Catagory',
     minWidth: 50,
     align: 'center',
-    format: (value) => value.toLocaleString('en-US'),
   },
 ];
 
-function createData(name, Price, Calories) {
-  return { name, Price, Calories };
+function createData(name, Price, Catagory) {
+  return { name, Price, Catagory };
 }
 
 var item = ['cup','bowl','apple','scissors','banana'];
@@ -84,17 +82,14 @@ const StyledTableCell2 = withStyles((theme) => ({
     },
 }))(TableCell);
 
-export default function StickyHeadTable({obj, total, setTotal, setState}) {
+export default function StickyHeadTable({labels, price, cat, total, setTotal, setState}) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   var rows = [];
 
-  for (var i=0; i<obj.length; i++){
-    if (item.includes(obj[i].class)){
-      rows[i] = createData(obj[i].class, item_price[obj[i].class], item_calor[obj[i].class])
-    }
-  
+  for (var i=0; i<labels.length; i++){
+      rows[i] = createData(labels[i], price[i], cat[i]);
   }
   
   function total_fun(items) {
@@ -136,6 +131,7 @@ export default function StickyHeadTable({obj, total, setTotal, setState}) {
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map((column) => {
                     const value = row[column.id];
+                    //console.log(value);
                     return (
                       <StyledTableCell key={column.id} align={column.align}>
                         {column.format && typeof value === 'number' ? column.format(value) : value}
