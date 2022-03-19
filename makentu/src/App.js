@@ -37,7 +37,7 @@ function App() {
   //const [preobjs, setPreobjs] = useState([]);
   const [add, setadd] = useState([/*"banana"*/]);
   const [remove, setremove] = useState([/*"apple"*/]);
-  const [state, setState] = useState(0);
+  const [state, setState] = useState(1);
   const [username, setUsername] = useState(0);
   const [total, setTotal] = useState(0);
   const classes = useStyles();
@@ -130,44 +130,6 @@ function App() {
         */}
         
         <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={1} style = {{marginTop: 10}}>
-          <Grid xs={4}>
-          { add.length === 0 ? <></> : 
-            <List
-              className={ classes.list }
-              aria-labelledby="nested-list-subheader"
-              subheader={
-                <ListSubheader color = "primary" id="nested-list-subheader">
-                  Items Added
-                </ListSubheader>
-              }
-            >
-              {add.map((x) => (
-                <ListItem button>
-                    {x}
-                </ListItem>
-                )
-              )}
-            </List>
-          }
-          { remove.length === 0 ? <></> : 
-            <List
-              className={ classes.list }
-              aria-labelledby="nested-list-subheader"
-              subheader={
-                <ListSubheader style = {{color: 'red'}} id="nested-list-subheader">
-                  Items Removed
-                </ListSubheader>
-              }
-            >
-              {remove.map((x) => (
-                <ListItem button>
-                  {x}
-                </ListItem>
-                )
-              )}
-            </List>
-          }
-          </Grid>
           <Grid item xs={12}>
             <Table obj = {object} total = {total} setTotal = {setTotal} setState = {setState} />
           </Grid>

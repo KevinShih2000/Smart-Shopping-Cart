@@ -45,7 +45,7 @@ var imgs = [
 
 //const contents = fs.readFileSync(imgs[0], {encoding: 'base64'});
 
-var item = ['cup','bowl','apple','scissors','banana'];
+//var item = ['cup','bowl','apple','scissors','banana'];
 
 //let model;
 let ready = false;
