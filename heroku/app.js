@@ -9,17 +9,19 @@ const cors = require('cors');
 const path = require("path");
 const fs = require('fs');
 
+/*
 require('@tensorflow/tfjs-backend-cpu');
 require('@tensorflow/tfjs-backend-webgl');
 const tf = require('@tensorflow/tfjs-node');
 const cocoSsd = require('@tensorflow-models/coco-ssd');
 const toUint8Array = require('base64-to-uint8array');
+*/
 
-//const mongoose = require('mongoose');
-//const apiRouter = require('./routes/api');
+const mongoose = require('mongoose');
+const apiRouter = require('./routes/api');
 const router = express.Router();
 
-//require('dotenv').config();
+require('dotenv').config();
 
 var sockets = [];
 var cameras = {};
@@ -39,14 +41,16 @@ const contents = fs.readFileSync(imgs[0], {encoding: 'base64'});
 
 var item = ['cup','bowl','apple','scissors','banana'];
 
-let model;
+//let model;
 let ready = false;
 
+/*
 (async () => {
     model = await cocoSsd.load();
     ready = true;
     console.log("Model ready...");
 })()
+*/
 
 const socketio = require('socket.io')(httpServer, {
     cors: {
@@ -107,6 +111,10 @@ socketio.on('connection', (socket) => {
             objs = preobjs;
         }
         
+    })
+    socket.on("result", async (msg) => {
+        console.log("msg received", msg);
+        socketio.emit("resmsg", "resmsg");
     })
 })
 
