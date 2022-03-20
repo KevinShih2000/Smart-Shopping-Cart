@@ -56,14 +56,14 @@ for(let j=0; j<rlabels.length; j++){
  
 var text2 = fs.readFileSync("./price.txt").toString();
 var rprice = text2.split("\n");
-for(let j=0; j<rprice.length; j++){
-  price[rprice[j].split(" ")[0]] = rprice[j].split(" ")[1];
+for(let k=0; k<rprice.length; k++){
+  price[rprice[k].split(" ")[0]] = rprice[k].split(" ")[1];
 }
 
 var text3 = fs.readFileSync("./cat.txt").toString();
 var rcat = text3.split("\n");
-for(let j=0; j<rcat.length; j++){
-  cat[rcat[j].split(" ")[0]] = rcat[j].split(" ")[1];
+for(let l=0; l<rcat.length; l++){
+  cat[rcat[l].split(" ")[0]] = rcat[l].split(" ")[1];
 }
 
 /*
