@@ -1,6 +1,7 @@
 import React from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -19,9 +20,12 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  title: {
+    //color: '#efefef',
+  },
 }));
 
-export default function PrimarySearchAppBar({username}) {
+export default function PrimarySearchAppBar({username, buttonstate, setbuttonState, setState, curstate}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -49,50 +53,11 @@ export default function PrimarySearchAppBar({username}) {
   const menuId = 'primary-search-account-menu';
   
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="#07B53B">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="#07B53B">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="#07B53B"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
     <div className={classes.grow}>
       <AppBar position="static" class="header">
-        <Toolbar>
+        <Toolbar color="primary">
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -101,16 +66,20 @@ export default function PrimarySearchAppBar({username}) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title} variant="h6" color="textSecondary" noWrap>
             Shopping Cart
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications" color="#07B53B">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            {
+              buttonstate === 0 ?
+              <Button variant = "contained" onClick={() => {setbuttonState(1); setState(3);}} >
+                Record
+              </Button>
+              : <Button variant = "contained" onClick={() => {setbuttonState(0); setState(curstate);}} >
+                Back
+              </Button>
+            }
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -123,7 +92,7 @@ export default function PrimarySearchAppBar({username}) {
             </IconButton>
           </div>
           <Typography className={classes.title} variant="h6" noWrap>
-              Cindy
+              {username}
           </Typography>
          
         </Toolbar>

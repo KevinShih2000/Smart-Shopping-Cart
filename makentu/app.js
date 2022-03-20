@@ -46,6 +46,7 @@ var cat = new Array(91).fill(0);
 var res_items;
 var res_price;
 var res_cat;
+var idx;
 
 var text1 = fs.readFileSync("./label.txt").toString();
 var rlabels = text1.split("\n");
@@ -160,9 +161,10 @@ socketio.on('connection', (socket) => {
         res_price = new Array(msg.length).fill(0);
         res_cat = new Array(msg.length).fill(0)
         for(let i=0; i<msg.length; i++){
-            res_items[i] = labels[msg[i]];
-            res_price[i] = parseInt(price[msg[i]], 10);
-            res_cat[i] = cat[msg[i]].trim();
+            idx = msg[i] + 1;
+            res_items[i] = labels[idx];
+            res_price[i] = parseInt(price[idx], 10);
+            res_cat[i] = cat[idx].trim();
         }
         socketio.emit("items", JSON.stringify(res_items), JSON.stringify(res_price), JSON.stringify(res_cat));
     })

@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function SignIn({setState, setUsername}) {
+export default function SignIn({setState, setcurState, setUsername}) {
   const classes = useStyles();
 
   return (
@@ -102,7 +102,7 @@ export default function SignIn({setState, setUsername}) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick = {() => setState(1)}
+            onClick = {() => {setState(1); setcurState(1)}}
           >
             Sign in
           </Button>

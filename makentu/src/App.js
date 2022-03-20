@@ -9,10 +9,12 @@ import Grid from '@material-ui/core/Grid';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Table from './components/table';
-import Header from './components/header';
 import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
+
+import Header from './components/header';
+import Table from './components/table';
+import Record from './components/shopping';
 
 import SignIn from './components/login';
 import Checkout from './components/checkout';
@@ -35,8 +37,12 @@ function App() {
   const [price, setPrice] = useState([]);
   const [cat, setCat] = useState([]);
   const [state, setState] = useState(0);
+  const [curstate, setcurState] = useState(0);
+  const [buttonstate, setbuttonState] = useState(0);
   const [username, setUsername] = useState(0);
   const [total, setTotal] = useState(0);
+  const [record, setRecord] = useState({});
+
 /*
   var objclass = ["cup", "bowl"];
   var pre = ["apple", "cup"];
@@ -79,9 +85,10 @@ function App() {
     }
   }, [ws, labels, price, cat, setLabels, setPrice, setCat]);
 
-  const f = async () => {
-    const hello = await instance.post('/home', { withCredentials: true });
-    console.log(hello);
+  const getrecord = async () => {
+    const records = await instance.post('/record', { withCredentials: true });
+    setRecord(records);
+    console.log(record);
   }
 
   const f2 = async () => {
@@ -93,12 +100,12 @@ function App() {
   }
 
   if (state === 0) {
-    return ( <SignIn setState = {setState} setUsername = {setUsername} /> );
+    return ( <SignIn setState = {setState} setcurState = {setcurState} setUsername = {setUsername} /> );
   }
   else if (state === 1) {
     return (
       <>
-        <Header username = {username} />
+        <Header username = {username} buttonstate = {buttonstate}  setbuttonState = {setbuttonState} setState = {setState} curstate = {curstate} />
         {/*<Button variant = "outlined" color='primary' onClick = {() => f()}>
           Hello
         </Button> 
@@ -109,14 +116,27 @@ function App() {
         
         <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={1} style = {{marginTop: 10}}>
           <Grid item xs={12}>
-            <Table labels = {labels} price = {price} cat = {cat} total = {total} setTotal = {setTotal} setState = {setState} />
+            <Table labels = {labels} price = {price} cat = {cat} total = {total} setTotal = {setTotal} setState = {setState} setcurState = {setcurState} />
           </Grid>
         </Grid>
       </>
     );
   }
+  else if (state === 2) {
+    return(
+      <>
+        <Header username = {username} buttonstate = {buttonstate}  setbuttonState = {setbuttonState} setState = {setState} curstate = {curstate} />
+        <Checkout total = {total} username = {username} /> );
+      </>
+    )
+  }
   else {
-    return( <Checkout total = {total} username = {username} /> );
+    return( 
+      <>
+        <Header username = {username} buttonstate = {buttonstate}  setbuttonState = {setbuttonState} setState = {setState} curstate = {curstate} />
+        <Record record = {record} />
+      </>
+    );
   }
   
 }
