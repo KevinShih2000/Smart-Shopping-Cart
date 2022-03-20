@@ -52,18 +52,21 @@ var text1 = fs.readFileSync("./label.txt").toString();
 var rlabels = text1.split("\n");
 for(let j=0; j<rlabels.length; j++){
   labels[rlabels[j].split(" ")[0]] = rlabels[j].split(" ")[1];
+  console.log(rlabels[j].split(" ")[0], rlabels[j].split(" ")[1])
 }
  
 var text2 = fs.readFileSync("./price.txt").toString();
 var rprice = text2.split("\n");
 for(let k=0; k<rprice.length; k++){
   price[rprice[k].split(" ")[0]] = rprice[k].split(" ")[1];
+  console.log(rprice[k].split(" ")[0], rprice[k].split(" ")[1])
 }
 
 var text3 = fs.readFileSync("./cat.txt").toString();
 var rcat = text3.split("\n");
 for(let l=0; l<rcat.length; l++){
   cat[rcat[l].split(" ")[0]] = rcat[l].split(" ")[1];
+  console.log(rcat[l].split(" ")[0],rcat[l].split(" ")[1])
 }
 
 /*

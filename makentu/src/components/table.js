@@ -82,7 +82,7 @@ const StyledTableCell2 = withStyles((theme) => ({
     },
 }))(TableCell);
 
-export default function StickyHeadTable({labels, price, cat, total, setTotal, setState, setcurState}) {
+export default function StickyHeadTable({labels, price, cat, total, setTotal, setState, setcurState, record, setRecord}) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -166,7 +166,17 @@ export default function StickyHeadTable({labels, price, cat, total, setTotal, se
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
       <Box display="flex" justifyContent="center" style={{ width: '100%' }} bgcolor="background.paper">
-        <Button variant = "contained" onClick = {() => {setState(2); setcurState(2);}} style = {{marginBottom: 10, marginTop: 10}} class="checkoutbutton">
+        <Button variant = "contained" onClick = {() => {
+          setState(2);
+          setcurState(2);
+          var today = new Date();
+          var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours()+":"+today.getMinutes();
+          var currecord = {
+            "time" : date,
+            "price" : total
+          }
+          setRecord([...record, currecord]);
+        }} style = {{marginBottom: 10, marginTop: 10}} class="checkoutbutton">
           CHECKOUT
         </Button>
       </Box>

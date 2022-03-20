@@ -23,6 +23,7 @@ function Copyright() {
 //var username = 'Cindy'
 
 export default function Checkout({total, username}) {
+  
   return (
     <Grid container component="main" direction="column" style = {{width: '100%'}} alignItems="flex-start" >
     <header className="App-header" >

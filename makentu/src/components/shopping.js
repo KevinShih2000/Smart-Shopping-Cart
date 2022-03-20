@@ -13,13 +13,13 @@ import TableRow from '@material-ui/core/TableRow';
 
 const columns = [
   { id: 'time',
-    label: 'time',
+    label: 'Time',
     minWidth: 50,
     align: 'center',
   },
   {
     id: 'Price',
-    label: 'Price',
+    label: 'Total Price',
     minWidth: 50,
     align: 'center',
   },
@@ -60,10 +60,9 @@ export default function StickyHeadTable({record}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   var rows = [];
-  console.log(Object.keys(record).length)
-  if(Object.keys(record).length !== 0){
-      for (var i=0; i<record["time"].length; i++){
-        rows[i] = createData(record["time"][i], record["price"][i]);
+  if(record.length !== 0){
+      for (var i=0; i<record.length; i++){
+        rows[i] = createData(record[i]["time"], record[i]["price"]);
     }
   }
 

@@ -41,7 +41,7 @@ function App() {
   const [buttonstate, setbuttonState] = useState(0);
   const [username, setUsername] = useState(0);
   const [total, setTotal] = useState(0);
-  const [record, setRecord] = useState({});
+  const [record, setRecord] = useState([]);
 
 /*
   var objclass = ["cup", "bowl"];
@@ -116,7 +116,7 @@ function App() {
         
         <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={1} style = {{marginTop: 10}}>
           <Grid item xs={12}>
-            <Table labels = {labels} price = {price} cat = {cat} total = {total} setTotal = {setTotal} setState = {setState} setcurState = {setcurState} />
+            <Table labels = {labels} price = {price} cat = {cat} total = {total} setTotal = {setTotal} setState = {setState} setcurState = {setcurState} record = {record} setRecord = {setRecord} />
           </Grid>
         </Grid>
       </>
@@ -126,7 +126,7 @@ function App() {
     return(
       <>
         <Header username = {username} buttonstate = {buttonstate}  setbuttonState = {setbuttonState} setState = {setState} curstate = {curstate} />
-        <Checkout total = {total} username = {username} /> );
+        <Checkout total = {total} username = {username} record = {record} setRecord = {setRecord} /> );
       </>
     )
   }
